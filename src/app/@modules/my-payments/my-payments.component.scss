@@ -1,0 +1,11 @@
+.my-payments-container {
+  height: calc(100vh - 101px);
+  background-color: var(--pp-gray-4);
+
+  &--title h1 {
+    font-family: var(--pp-font-family-montserrat) !important;
+    color: var(--pp-black-2);
+    font-weight: 36px;
+    margin: 0;
+  }
+}
