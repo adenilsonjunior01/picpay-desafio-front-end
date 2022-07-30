@@ -1,112 +1,124 @@
-<p-card styleClass="border-round-lg">
+<p-card styleClass="border-round-lg" [formGroup]="form">
   <div class="grid">
     <div class="col-12">
       <div class="flex align-items-center justify-content-between">
         <div class="flex align-items-center">
           <span class="p-input-icon-right">
-            <img
-              src="assets/images/ic-search.svg"
-              alt="Search"
-              class="ic-search" />
+            <img src="assets/images/ic-search.svg" alt="Search" class="ic-search" />
             <input
               type="text"
               pInputText
               class="p-inputtext"
               placeholder="Pesquisar por usuário"
               [formControl]="querySearch"
-               />
+            />
           </span>
-          <p-button
-            label="Filtro"
-            icon="pi pi-search"
-            iconPos="right"
-            styleClass="p-button-raised p-button-secondary p-button ml-4"></p-button>
+          <p-button (click)="listenerQuerySearch()" styleClass="p-button-raised btn-filter p-button ml-4">
+            <img src="assets/images/ic-filter.svg" alt="Filter" />
+            <span class="ml-2 text-color">Filtro</span>
+          </p-button>
         </div>
-        <p-paginator
-          [rows]="10"
-          [totalRecords]="120"
-          [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+        <ng-container *ngIf="payments?.length">
+          <p-paginator
+            [rows]="2"
+            [totalRecords]="totalRecords"
+            [rowsPerPageOptions]="[10, 20, 30]"
+            (onPageChange)="onPageChange($event)"
+          ></p-paginator>
+        </ng-container>
       </div>
     </div>
 
     <div class="col-12">
-      <p-table
-        [value]="products"
-        styleClass="p-datatable-striped"
-        responsiveLayout="scroll">
+      <p-table [value]="payments" styleClass="p-datatable-striped" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="code">
-              <div class="flex align-items-center">
-                <span>Usuário</span>
-                <img
-                  class="pl-2"
-                  src="assets/images/ic-sort.svg"
-                  alt="Arrow Sort" />
-              </div>
-            </th>
+            <th pSortableColumn="name"></th>
             <th pSortableColumn="name">
               <div class="flex align-items-center">
+                <span>Usuário</span>
+                <img class="pl-2" src="assets/images/ic-sort.svg" alt="Arrow Sort" />
+              </div>
+            </th>
+            <th pSortableColumn="title">
+              <div class="flex align-items-center">
                 <span>Título</span>
-                <img
-                  class="pl-2"
-                  src="assets/images/ic-sort.svg"
-                  alt="Arrow Sort" />
+                <img class="pl-2" src="assets/images/ic-sort.svg" alt="Arrow Sort" />
               </div>
             </th>
 
-            <th pSortableColumn="category">
+            <th pSortableColumn="date">
               <div class="flex align-items-center">
                 <span>Data</span>
-                <img
-                  class="pl-2"
-                  src="assets/images/ic-sort.svg"
-                  alt="Arrow Sort" />
+                <img class="pl-2" src="assets/images/ic-sort.svg" alt="Arrow Sort" />
               </div>
             </th>
-            <th pSortableColumn="quantity">
+            <th pSortableColumn="value">
               <div class="flex align-items-center">
                 <span>Valor</span>
-                <img
-                  class="pl-2"
-                  src="assets/images/ic-sort.svg"
-                  alt="Arrow Sort" />
+                <img class="pl-2" src="assets/images/ic-sort.svg" alt="Arrow Sort" />
               </div>
             </th>
-            <th pSortableColumn="quantity">
+            <th pSortableColumn="isPayed">
               <div class="flex align-items-center">
                 <span>Pago</span>
-                <img
-                  class="pl-2"
-                  src="assets/images/ic-sort.svg"
-                  alt="Arrow Sort" />
+                <img class="pl-2" src="assets/images/ic-sort.svg" alt="Arrow Sort" />
               </div>
             </th>
             <th></th>
           </tr>
         </ng-template>
-        <ng-template
-          pTemplate="body"
-          let-product>
+        <ng-template pTemplate="body" let-payment>
           <tr>
-            <td>{{ product.code }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category }}</td>
-            <td>{{ product.quantity }}</td>
             <td>
-              <p-tableCheckbox [value]="product"></p-tableCheckbox>
+              <div class="tr-payments">
+                <img width="40" height="40" [src]="payment.image" alt="Avatar" />
+              </div>
             </td>
+            <td>
+              <div class="tr-payments">
+                <p class="mb-2 mt-0">{{ payment.name }}</p>
+                <span> {{ payment.username }} </span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <p class="mb-2 mt-0">{{ payment.title }}</p>
+              </div>
+            </td>
+            <td>
+              <div class="tr-payments">
+                <p class="mb-2">{{ payment.date | date: "dd/MM/yyyy" }}</p>
+                <span> {{ payment.date | date: "hh:MM a" }}</span>
+              </div>
+              {{ payment.category }}
+            </td>
+            <td>
+              <div class="tr-payments">
+                <p>{{ payment.value | currency: "R$" }}</p>
+              </div>
+            </td>
+            <td>
+              <p-badge
+                [value]="payment.isPayed ? 'Pago' : 'Em processamento'"
+                [severity]="payment.isPayed ? 'success' : 'warning'"
+              ></p-badge>
+            </td>
+
             <td>
               <div class="flex align-items-center justify-content-end">
                 <img
                   src="assets/images/ic-edit.svg"
                   alt="Edit"
-                  (click)="updateUser(product)"
-                  class="pr-4 cursor-pointer" />
+                  (click)="updateUser(payment)"
+                  class="pr-4 cursor-pointer"
+                />
                 <img
                   src="assets/images/ic-remove.svg"
                   alt="Remove"
-                  class="pr-4 cursor-pointer" />
+                  (click)="confirmDelete.emit(payment)"
+                  class="pr-4 cursor-pointer"
+                />
               </div>
             </td>
           </tr>
@@ -115,103 +127,3 @@
     </div>
   </div>
 </p-card>
-
-<p-dialog header="Adicionar pagamento" [(visible)]="display" [modal]="true" [style]="{width: '772px'}" [draggable]="false" [resizable]="false">
-  <form [formGroup]="formEdit">
-    <div class="grid mt-4">
-      <div class="col-6">
-        <span class="p-float-label">
-          <input
-            id="usuario"
-            type="text"
-            pInputText
-            formControlName="usuario"
-            aria-describedby="usuario-help"
-            [ngClass]="{ 'ng-invalid ng-dirty': usuarioControl?.errors?.required && usuarioControl?.dirty }"
-            class="w-full" />
-          <label for="usuario">Usuário*</label>
-        </span>
-        <ng-container *ngIf="usuarioControl?.errors?.required && usuarioControl?.dirty">
-          <small
-            id="usuario-help"
-            class="p-error block pt-1"
-            >Usuário é um campo obrigatório.</small
-          >
-        </ng-container>
-      </div>
-
-      <div class="col-6">
-        <span class="p-float-label">
-          <input
-            id="valor"
-            type="text"
-            pInputText
-            formControlName="valor"
-            aria-describedby="valor-help"
-            [ngClass]="{ 'ng-invalid ng-dirty': valorControl?.errors?.required && valorControl?.dirty }"
-            class="w-full" />
-          <label for="valor">Valor*</label>
-        </span>
-        <ng-container *ngIf="valorControl?.errors?.required && valorControl?.dirty">
-          <small
-            id="valor-help"
-            class="p-error block pt-1"
-            >Valor é um campo obrigatório.</small
-          >
-        </ng-container>
-      </div>
-
-      <div class="col-6 pt-3">
-        <span class="p-float-label">
-          <input
-            id="data"
-            type="text"
-            pInputText
-            formControlName="data"
-            aria-describedby="data-help"
-            [ngClass]="{ 'ng-invalid ng-dirty': dataControl?.errors?.required && dataControl?.dirty }"
-            class="w-full" />
-          <label for="data">Data*</label>
-        </span>
-        <ng-container *ngIf="dataControl?.errors?.required && dataControl?.dirty">
-          <small
-            id="data-help"
-            class="p-error block pt-1"
-            >Data é um campo obrigatório.</small
-          >
-        </ng-container>
-      </div>
-
-      <div class="col-6 pt-3">
-        <span class="p-float-label">
-          <input
-            id="titulo"
-            type="text"
-            pInputText
-            formControlName="titulo"
-            aria-describedby="titulo-help"
-            class="w-full" />
-          <label for="titulo">Titulo</label>
-        </span>
-      </div>
-    </div>
-
-    <div class="grid justify-content-end mt-5">
-      <div class="col-3">
-        <p-button
-        (click)="showDialog()"
-        type="button"
-        label="Cancelar"
-        styleClass="w-full btn-letter-spacing-1x uppercase p-button-secondary"
-       ></p-button>
-      </div>
-      <div class="col-3">
-        <p-button
-        label="Salvar"
-        type="submit"
-        styleClass="w-full btn-letter-spacing-1x uppercase"
-        [disabled]="formEdit.invalid"></p-button>
-      </div>
-    </div>
-  </form>
-</p-dialog>

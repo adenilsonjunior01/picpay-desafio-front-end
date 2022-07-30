@@ -8,15 +8,14 @@ import { filter, map, switchMap } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
 
   constructor(
     private router: Router,
     private titleService: Title,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => this.activatedRoute),

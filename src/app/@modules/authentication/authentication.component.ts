@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { finalize, take } from 'rxjs';
+import { IUser } from 'src/app/@models/interfaces';
+import { AuthService } from 'src/app/@services/auth/auth.service';
+import { CredentialsService } from 'src/app/@services/credentials/credentials.service';
 
 @Component({
   selector: 'app-authentication',
@@ -10,9 +14,17 @@ import { Router } from '@angular/router';
 export class AuthenticationComponent implements OnInit {
   public form!: FormGroup;
   public toogleTypeInputPassword: boolean;
+  public loading: boolean;
+  public validLogin: boolean;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+      private formBuilder: FormBuilder, 
+      private router: Router,
+      private userService: AuthService,
+      private credentials: CredentialsService) {
     this.toogleTypeInputPassword = false;
+    this.loading = false;
+    this.validLogin = false;
   }
 
   public ngOnInit(): void {
@@ -21,16 +33,36 @@ export class AuthenticationComponent implements OnInit {
 
   public createForm(): void {
     this.form = this.formBuilder.group({
-      email: ['teste@teste.com', [ Validators.required, Validators.email ]],
-      senha: ['123', [ Validators.required ]]
+      email: [null, [ Validators.required, Validators.email ]],
+      senha: [null, [ Validators.required ]]
     });
   }
 
   public autenticate(): void {
-    console.log('Click!');
     if (this.form.valid) {
-      this.router.navigateByUrl('/my-payments');
+      this.loading = true;
+      this.userService.getUser()
+        .pipe(
+          finalize(() => this.loading = false),
+          take(1))
+          .subscribe({
+            next: response => {
+              const user = response.find(v => v.email === this.emailControl.value);
+              this.validateUser(user);
+            }
+          })
     }
+  }
+
+  private validateUser(user: IUser): void {
+    this.validLogin = false;
+    if (user && user.email === this.emailControl.value && user.password === this.senhaControl.value) {
+      this.credentials.credentials(user);
+      this.router.navigateByUrl('/my-payments');
+    } else {
+      this.validLogin = true;
+    }
+
   }
 
   public changeTypeInputPassword():void {
@@ -44,5 +76,4 @@ export class AuthenticationComponent implements OnInit {
   public get senhaControl(): AbstractControl | null {
     return this.form.controls['senha'];
   }
-
 }

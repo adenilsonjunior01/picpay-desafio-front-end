@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TypeActionEnum } from 'src/app/@enums';
 
 @Component({
   selector: 'app-add-payment',
@@ -6,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./add-payment.component.scss']
 })
 export class AddPaymentComponent implements OnInit {
+  @Output() public showModal = new EventEmitter<TypeActionEnum>();
   @Output() public newPayment = new EventEmitter<boolean>();
 
   constructor() { }
@@ -14,7 +16,7 @@ export class AddPaymentComponent implements OnInit {
   }
 
   public emitEvent(): void {
-    this.newPayment.emit(true);
+    this.showModal.emit(TypeActionEnum.ADD);
   }
 
 }

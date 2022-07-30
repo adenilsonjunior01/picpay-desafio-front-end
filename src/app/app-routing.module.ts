@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Shell } from './shell/shell.service';
+import { Shell } from './shell/shell';
 
 const routes: Routes = [
-
   {
     path: 'login',
     redirectTo: 'login',
@@ -19,11 +18,15 @@ const routes: Routes = [
       loadChildren: () => import('./@modules/my-payments/my-payments.module').then((module) => module.MyPaymentsModule)
     },
     {
+      path: 'profile',
+      loadChildren: () => import('./@modules/profile/profile.module').then((module) => module.ProfileModule)
+    },
+    {
       path: '**',
       redirectTo: '/login'
     }
   ]),
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,9 +1,9 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ShellComponent } from './shell.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import {TooltipModule} from 'primeng/tooltip';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   imports: [
@@ -11,6 +11,7 @@ import {TooltipModule} from 'primeng/tooltip';
     RouterModule,
     TooltipModule
   ],
-  declarations: [ShellComponent, NavigationComponent]
+  declarations: [ShellComponent, NavigationComponent],
+  providers: [ TitleCasePipe ]
 })
 export class ShellModule { }

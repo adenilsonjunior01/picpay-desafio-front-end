@@ -6,12 +6,49 @@
       </div>
 
       <div class="col-12 sm:col-3 sm:col-offset-9 col-offset-0">
-        <app-add-payment></app-add-payment>
+        <app-add-payment (showModal)="showModal($event)"></app-add-payment>
       </div>
     </div>
   </div>
 
-  <div class="col-12 px-5">
-    <app-table-payments></app-table-payments>
+  <div class="col-12 px-5 mb-6">
+    <app-table-payments
+      (showModal)="showModal($event)"
+      (confirmDelete)="getPaymentObject($event)"
+      [form]="form"
+      [totalRecords]="totalRecords"
+      (paramsPaginate)="setParamsPagination($event)"
+      [payments]="payments"
+    ></app-table-payments>
   </div>
 </div>
+<p-dialog
+  [header]="titleDialog"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '772px' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-form-payment
+    [form]="form"
+    (closeModal)="showModal($event)"
+    (submitForm)="handleEventModal($event)"
+    [action]="typeAction"
+  ></app-form-payment>
+</p-dialog>
+
+<p-dialog
+  header="Excluir pagamento"
+  [(visible)]="confirm"
+  [modal]="true"
+  [style]="{ width: '405px' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-dialog-confirm-delete
+    [payment]="resume"
+    (emitConfirmDelete)="deletePayment(resume)"
+    (emitCancelDelte)="showDialogConfirm()"
+  ></app-dialog-confirm-delete>
+</p-dialog>
