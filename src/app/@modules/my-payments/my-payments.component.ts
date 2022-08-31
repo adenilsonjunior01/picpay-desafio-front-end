@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { finalize, take } from 'rxjs';
 import { Utils } from 'src/app/@shared/utils/utils';
@@ -19,7 +19,7 @@ const TITLE_UPDATE = 'Editar pagamento';
   styleUrls: ['./my-payments.component.scss']
 })
 export class MyPaymentsComponent implements OnInit {
-  public form!: FormGroup;
+  public form!: UntypedFormGroup;
   public addPayment!: boolean;
   public titleDialog: string;
   public display: boolean;
@@ -33,7 +33,7 @@ export class MyPaymentsComponent implements OnInit {
   public paginateParams: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private paymentService: PaymentsService,
     private datePipe: DatePipe) {
 

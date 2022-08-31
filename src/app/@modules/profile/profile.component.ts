@@ -1,6 +1,6 @@
 import { finalize, take } from 'rxjs';
 import { Component, OnInit } from "@angular/core";
-import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { IUser } from "src/app/@models/interfaces";
 import { CredentialsService } from "src/app/@services/credentials/credentials.service";
@@ -13,13 +13,13 @@ import { MessageService } from 'primeng/api';
   styleUrls: ["./profile.component.scss"],
 })
 export class ProfileComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public toogleTypeInputPassword: boolean;
   public loading: boolean;
 
   constructor(
     private router: Router, 
-    private readonly formBuilder: FormBuilder, 
+    private readonly formBuilder: UntypedFormBuilder, 
     private credentials: CredentialsService,
     private profileService: ProfileService,
     private messageService: MessageService) {

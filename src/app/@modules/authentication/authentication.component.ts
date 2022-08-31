@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize, take } from 'rxjs';
 import { IUser } from 'src/app/@models/interfaces';
@@ -12,13 +12,13 @@ import { CredentialsService } from 'src/app/@services/credentials/credentials.se
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
-  public form!: FormGroup;
+  public form!: UntypedFormGroup;
   public toogleTypeInputPassword: boolean;
   public loading: boolean;
   public validLogin: boolean;
 
   constructor(
-      private formBuilder: FormBuilder,
+      private formBuilder: UntypedFormBuilder,
       private router: Router,
       private userService: AuthService,
       private credentials: CredentialsService) {

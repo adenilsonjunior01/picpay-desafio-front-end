@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { TypeActionEnum } from 'src/app/@enums';
 
 @Component({
@@ -9,7 +9,7 @@ import { TypeActionEnum } from 'src/app/@enums';
 })
 export class FormPaymentComponent implements OnInit {
   @Input() public action!: TypeActionEnum;
-  @Input() public form!: FormGroup;
+  @Input() public form!: UntypedFormGroup;
   @Output() public closeModal = new EventEmitter<any>();
   @Output() public submitForm = new EventEmitter<TypeActionEnum>();
   
