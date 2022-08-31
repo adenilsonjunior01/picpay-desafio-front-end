@@ -18,7 +18,7 @@ export class AuthenticationComponent implements OnInit {
   public validLogin: boolean;
 
   constructor(
-      private formBuilder: FormBuilder, 
+      private formBuilder: FormBuilder,
       private router: Router,
       private userService: AuthService,
       private credentials: CredentialsService) {
@@ -33,8 +33,8 @@ export class AuthenticationComponent implements OnInit {
 
   public createForm(): void {
     this.form = this.formBuilder.group({
-      email: [null, [ Validators.required, Validators.email ]],
-      senha: [null, [ Validators.required ]]
+      email: ['usuario@gmail.com', [ Validators.required, Validators.email ]],
+      senha: ['usuario', [ Validators.required ]]
     });
   }
 
