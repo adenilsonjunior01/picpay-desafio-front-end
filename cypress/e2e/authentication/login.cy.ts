@@ -29,7 +29,7 @@ describe('Implementando Cypress - Teste Técnico da PicPay (estudo)', () => {
       .should('be.disabled');
   });
 
-  it.only('Preenche campo de e-mail e senha e realiza o login', () => {
+  it('Preenche campo de e-mail e senha e realiza o login', () => {
    cy.fillInputsEmailAndPassword();
     cy.get(`button`).should(($btn) => {
       expect(String($btn[0].disabled)).to.equal('false');
