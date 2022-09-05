@@ -10,6 +10,7 @@
     "e2e": "ng e2e",
     "api": "json-server --watch db.json",
     "cy:open": "npx cypress open",
+    "cy:open:component": "npx cypress open --component",
     "cy:open:mobile": "npx cypress open --config viewportWidth=410 viewportHeight=860",
     "test:cy": "npx cypress run",
     "test:mobile": "npx cypress run --config viewportWidth=410 viewportHeight=860"

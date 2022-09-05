@@ -5,7 +5,7 @@ import { finalize, take } from 'rxjs';
 import { IUser } from 'src/app/@models/interfaces';
 import { AuthService } from 'src/app/@services/auth/auth.service';
 import { CredentialsService } from 'src/app/@services/credentials/credentials.service';
-
+import { CY_SELECTORS } from 'src/app/@shared/enums';
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
@@ -16,6 +16,7 @@ export class AuthenticationComponent implements OnInit {
   public toogleTypeInputPassword: boolean;
   public loading: boolean;
   public validLogin: boolean;
+  public readonly CY_SELECTOR = CY_SELECTORS;
 
   constructor(
       private formBuilder: UntypedFormBuilder,
@@ -33,8 +34,10 @@ export class AuthenticationComponent implements OnInit {
 
   public createForm(): void {
     this.form = this.formBuilder.group({
-      email: ['usuario@gmail.com', [ Validators.required, Validators.email ]],
-      senha: ['usuario', [ Validators.required ]]
+      email: [null, [ Validators.required, Validators.email ]],
+      senha: [null, [ Validators.required ]]
+      // email: ['usuario@gmail.com', [ Validators.required, Validators.email ]],
+      // senha: ['usuario', [ Validators.required ]]
     });
   }
 
