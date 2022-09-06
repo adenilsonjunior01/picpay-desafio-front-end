@@ -13,7 +13,7 @@ describe('Fluxo de Pesquisa e Paginação - Teste Técnico da PicPay (estudo)', 
       .should('have.text', STRINGS.TITLE_MY_PAYMENTS);
   });
 
-  it.only('Deve verificar se retornou resultado na busca ', () => {
+  it('Deve verificar se retornou resultado na busca ', () => {
     cy.request({
       method: 'GET',
       url: `${Cypress.env('apiUrl')}/tasks`,
