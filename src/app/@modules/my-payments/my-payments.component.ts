@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { finalize, take } from 'rxjs';
+import { CY_SELECTORS, STRINGS } from 'src/app/@shared/enums';
 import { Utils } from 'src/app/@shared/utils/utils';
 
 import { TypeActionEnum } from './../../@enums/type-action.enum';
@@ -31,6 +32,9 @@ export class MyPaymentsComponent implements OnInit {
   public resume!: IPayments;
   public totalRecords: number;
   public paginateParams: any;
+
+  public readonly CY_SELECTOR = CY_SELECTORS;
+  public readonly STRINGS = STRINGS;
 
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -144,7 +148,7 @@ export class MyPaymentsComponent implements OnInit {
     });
     return result;
   }
- 
+
 
   public deletePayment(payment: IPayments): void {
     this.paymentService.deletePayment(payment).pipe(

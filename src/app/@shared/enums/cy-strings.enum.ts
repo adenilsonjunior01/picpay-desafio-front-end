@@ -4,4 +4,9 @@ export enum CY_SELECTORS {
   SELECTOR_EMAIL = 'email',
   SELECTOR_PASSWORD = 'senha',
   SELECTOR_BTN_LOGIN = 'btn-login',
+
+  // MY-PAYMENTS
+  SELECTOR_TITLE_MY_PAYMENTS = 'my-payments',
+  SELECTOR_INPUT_SEARCH = 'search',
+  SELECTOR_TABLE_PAYMENTS = 'table_payments'
 }

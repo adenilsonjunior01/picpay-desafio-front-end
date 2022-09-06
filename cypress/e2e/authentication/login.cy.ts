@@ -1,10 +1,11 @@
 /// <reference types="cypress" />
 
 import { CY_SELECTORS } from "src/app/@shared/enums";
+import { environment } from "src/environments/environment";
 
 describe('Implementando Cypress - Teste Técnico da PicPay (estudo)', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200/login');
+    cy.visit(`${ environment.LOCAL_URL }/login`);
   });
 
   it('Verifica titulo da pagina', () => {
