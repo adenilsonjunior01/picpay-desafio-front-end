@@ -17,14 +17,26 @@ Cypress.Commands.add('authenticationInApplication', () => {
 
 Cypress.Commands.add('fillInputSearch', () => {
   cy.get(`#${ CY_SELECTORS.SELECTOR_INPUT_SEARCH }`).type('Pennie Dumphries');
+});
+
+Cypress.Commands.add('requestPayments', (page: string | number = 1, limit: string | number = 10) => {
+  cy.request({
+    method: 'GET',
+    url: `${Cypress.env('apiUrl')}/tasks`,
+    qs: {
+      "_page": page,
+      "_limit": limit,
+    }
+  });
 })
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      fillInputsEmailAndPassword(): Chainable<void>,
-      authenticationInApplication(): Chainable<void>,
-      fillInputSearch(): Chainable<void>,
+      fillInputsEmailAndPassword(): void,
+      authenticationInApplication(): void,
+      fillInputSearch(): void,
+      requestPayments(page: string | number, limit: string | number): Promise<any>
     }
   }
 }

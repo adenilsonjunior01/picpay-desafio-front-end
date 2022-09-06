@@ -14,14 +14,8 @@ describe('Fluxo de Pesquisa e Paginação - Teste Técnico da PicPay (estudo)', 
   });
 
   it('Deve verificar se retornou resultado na busca ', () => {
-    cy.request({
-      method: 'GET',
-      url: `${Cypress.env('apiUrl')}/tasks`,
-      qs: {
-        "_page": "1",
-        "_limit": "10",
-      }
-    }).then(($response) => {
+    cy.requestPayments(1, 10)
+    .then(($response) => {
       expect($response.status).to.eq(200);
       expect($response.body).to.length(10);
       expect($response.allRequestResponses[0]['Request URL']).to.eq(`${environment.API_URL}/tasks?_page=1&_limit=10`);
@@ -39,4 +33,18 @@ describe('Fluxo de Pesquisa e Paginação - Teste Técnico da PicPay (estudo)', 
     });
   });
 
+  it('Deve realizar paginação para próxima página e retornar para anterior', () => {
+    cy.clock();
+    cy.requestPayments(1, 10)
+      .then((response) => {
+        if (response.body.length >= 10) {
+          cy.get('.p-paginator-next').click();
+          cy.get('.p-paginator-pages > :nth-child(1)').should('not.have.class', '.p-highlight');
+          cy.get('.p-highlight').contains('2');
+        }
+      });
+    cy.tick(500);
+    cy.get('.p-paginator-prev').click();
+    cy.get('.p-highlight').contains('1');
+  });
 });
