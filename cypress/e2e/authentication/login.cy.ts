@@ -39,9 +39,9 @@ describe('Implementando Cypress - Teste Técnico da PicPay (estudo)', () => {
     cy.request({
       method: 'GET',
       url: `${Cypress.env('apiUrl')}/account`
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body).to.have.length(1);
+    }).then(($response) => {
+      expect($response.status).to.eq(200);
+      expect($response.body).to.have.length(1);
     });
 
     cy.contains(`button`, `Entrar`).click();
