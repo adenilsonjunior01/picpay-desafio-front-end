@@ -37,7 +37,7 @@ Cypress.Commands.add('openDialogNewPayment', () => {
 Cypress.Commands.add('fillInputsForm', () => {
   cy.get(`#${CY_SELECTORS.SELECTOR_INPUT_FORM_NAME}`).type('Teste Cypress');
   cy.get(`#${CY_SELECTORS.SELECTOR_INPUT_FORM_VALUE}`).type('100000');
-  cy.get(`#${CY_SELECTORS.SELECTOR_INPUT_FORM_DATA}`).type('01/01/2022');
+
   cy.get(`#${CY_SELECTORS.SELECTOR_INPUT_FORM_TITLE}`).type('Pagamento Cypress');
   cy.get(`#${CY_SELECTORS.SELECTOR_INPUT_FORM_USERNAME}`).type('cypress');
 });
