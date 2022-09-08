@@ -8,12 +8,12 @@ describe('Fluxo de Pesquisa e Paginação - Teste Técnico da PicPay (estudo)', 
     cy.authenticationInApplication();
   });
 
-  it('Deve verificar página correta', () => {
-    cy.get(`#${ CY_SELECTORS.SELECTOR_TITLE_MY_PAYMENTS }`)
-      .should('have.text', STRINGS.TITLE_MY_PAYMENTS);
+  it('Deve verificar se o título da página está correto.', () => {
+    cy.get(`#${CY_SELECTORS.SELECTOR_TITLE_MY_PAYMENTS}`)
+      .should('have.text', ` ${STRINGS.TITLE_MY_PAYMENTS} `);
   });
 
-  it('Deve verificar se retornou resultado na busca ', () => {
+  it('Deve verificar se retornou resultado na busca.', () => {
     cy.requestPayments(1, 10)
     .then(($response) => {
       expect($response.status).to.eq(200);
@@ -53,5 +53,10 @@ describe('Fluxo de Pesquisa e Paginação - Teste Técnico da PicPay (estudo)', 
     cy.get('[ng-reflect-label="20"] > .p-ripple > .ng-star-inserted').click();
 
     cy.get('#pr_id_4_label').should('have.text', '20');
+  });
+
+  it('Deve clicar no botão de Editar Pagamento e verificar se o modal foi aberto corretamente.', () => {
+    cy.get(`#${CY_SELECTORS.SELECT_BTN_EDIT_PAYMENT}`).click();
+    cy.get('#pr_id_1-label').should('have.text', STRINGS.TITLE_UPDATE_PAYMENTS);
   });
 });

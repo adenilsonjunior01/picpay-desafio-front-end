@@ -3,10 +3,10 @@ export enum CY_SELECTORS {
   // AUTHENTICATION
   SELECTOR_EMAIL = 'email',
   SELECTOR_PASSWORD = 'senha',
-  SELECTOR_BTN_LOGIN = 'btn-login',
+  SELECTOR_BTN_LOGIN = 'btn_login',
 
   // MY-PAYMENTS
-  SELECTOR_TITLE_MY_PAYMENTS = 'my-payments',
+  SELECTOR_TITLE_MY_PAYMENTS = 'my_payments',
   SELECTOR_INPUT_SEARCH = 'search',
   SELECTOR_TABLE_PAYMENTS = 'table_payments',
   SELECTOR_ORDER_BY_USER = 'order_by_user',
@@ -23,4 +23,6 @@ export enum CY_SELECTORS {
   SELECTOR_BTN_TOGGLE = 'form_my_payment_btn_toggle',
   SELECTOR_BTN_CANCEL = 'form_btn_cancel',
   SELECTOR_BTN_SAVE = 'form_btn_save',
+  SELECT_BTN_EDIT_PAYMENT = 'btn_edit_payment',
+  SELECT_BTN_DELETE_PAYMENT = 'btn_delete_payment'
 }
