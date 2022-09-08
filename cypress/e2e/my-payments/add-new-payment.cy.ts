@@ -1,4 +1,4 @@
-import { STRINGS } from 'src/app/@shared/enums';
+import { STRINGS, CY_SELECTORS } from 'src/app/@shared/enums';
 /// <reference types="cypress" />
 
 describe('Fluxo novo pagamento - Teste Técnico da PicPay (estudo)', () => {
@@ -10,4 +10,11 @@ describe('Fluxo novo pagamento - Teste Técnico da PicPay (estudo)', () => {
     cy.openDialogNewPayment();
     cy.get('#pr_id_1-label').should('have.text', STRINGS.TITLE_ADD_PAYMENTS)
   });
+
+  it('Deve preencher os campos do formulário e verificar se o formulário é válido.', () => {
+    cy.openDialogNewPayment();
+    cy.fillInputsForm();
+    cy.get(`#${CY_SELECTORS.SELECTOR_BTN_SAVE}`).should('not.be.disabled');
+  });
+
 });
