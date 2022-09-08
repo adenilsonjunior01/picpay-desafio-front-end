@@ -28,15 +28,20 @@ Cypress.Commands.add('requestPayments', (page: string | number = 1, limit: strin
       "_limit": limit,
     }
   });
-})
+});
+
+Cypress.Commands.add('openDialogNewPayment', () => {
+  cy.get('#btn_new_payment').click();
+});
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      fillInputsEmailAndPassword(): void,
-      authenticationInApplication(): void,
-      fillInputSearch(): void,
+      fillInputsEmailAndPassword(): void
+      authenticationInApplication(): void
+      fillInputSearch(): void
       requestPayments(page: string | number, limit: string | number): Promise<any>
+      openDialogNewPayment(): void
     }
   }
 }

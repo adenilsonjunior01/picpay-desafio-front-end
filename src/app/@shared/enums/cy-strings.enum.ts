@@ -9,5 +9,6 @@ export enum CY_SELECTORS {
   SELECTOR_TITLE_MY_PAYMENTS = 'my-payments',
   SELECTOR_INPUT_SEARCH = 'search',
   SELECTOR_TABLE_PAYMENTS = 'table_payments',
-  SELECTOR_ORDER_BY_USER = 'order_by_user'
+  SELECTOR_ORDER_BY_USER = 'order_by_user',
+  SELECTOR_BTN_NEW_PAYMENT = 'btn_new_payment'
 }

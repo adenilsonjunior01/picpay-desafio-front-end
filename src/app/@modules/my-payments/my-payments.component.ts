@@ -10,10 +10,6 @@ import { Utils } from 'src/app/@shared/utils/utils';
 import { TypeActionEnum } from './../../@enums/type-action.enum';
 import { IPayments } from './../../@models/interfaces/payments.interface';
 import { PaymentsService } from './../../@services/payments/payments.service';
-
-const TITLE_ADD = 'Adicionar pagamento';
-const TITLE_UPDATE = 'Editar pagamento';
-
 @Component({
   selector: 'app-my-payments',
   templateUrl: './my-payments.component.html',
@@ -41,7 +37,7 @@ export class MyPaymentsComponent implements OnInit {
     private paymentService: PaymentsService,
     private datePipe: DatePipe) {
 
-    this.titleDialog = TITLE_ADD;
+    this.titleDialog = STRINGS.TITLE_ADD_PAYMENTS;
     this.display = false;
     this.confirm = false;
     this.loading = false;
@@ -180,9 +176,9 @@ export class MyPaymentsComponent implements OnInit {
 
   public handleTitleDialog(type?: TypeActionEnum): void {
     if (type === TypeActionEnum.ADD) {
-      this.titleDialog = TITLE_ADD;
+      this.titleDialog = STRINGS.TITLE_ADD_PAYMENTS;
     } else {
-      this.titleDialog = TITLE_UPDATE;
+      this.titleDialog = STRINGS.TITLE_UPDATE_PAYMENTS;
     }
   }
 
