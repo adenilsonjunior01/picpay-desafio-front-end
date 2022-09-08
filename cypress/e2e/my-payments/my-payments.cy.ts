@@ -47,4 +47,11 @@ describe('Fluxo de Pesquisa e Paginação - Teste Técnico da PicPay (estudo)', 
     cy.get('.p-paginator-prev').click();
     cy.get('.p-highlight').contains('1');
   });
+
+  it('Deve alterar no dropdown a quantidade de items a ser retornados da API', () => {
+    cy.get('.p-paginator-rpp-options').click();
+    cy.get('[ng-reflect-label="20"] > .p-ripple > .ng-star-inserted').click();
+
+    cy.get('#pr_id_4_label').should('have.text', '20');
+  });
 });

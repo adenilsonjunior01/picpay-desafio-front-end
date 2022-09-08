@@ -8,5 +8,6 @@ export enum CY_SELECTORS {
   // MY-PAYMENTS
   SELECTOR_TITLE_MY_PAYMENTS = 'my-payments',
   SELECTOR_INPUT_SEARCH = 'search',
-  SELECTOR_TABLE_PAYMENTS = 'table_payments'
+  SELECTOR_TABLE_PAYMENTS = 'table_payments',
+  SELECTOR_ORDER_BY_USER = 'order_by_user'
 }
