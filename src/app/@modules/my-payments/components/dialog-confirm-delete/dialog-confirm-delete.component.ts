@@ -1,3 +1,4 @@
+import { CY_SELECTORS } from './../../../../@shared/enums/cy-strings.enum';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPayments } from 'src/app/@models/interfaces/payments.interface';
 
@@ -12,6 +13,7 @@ export class DialogConfirmDeleteComponent implements OnInit {
   @Output() public emitCancelDelte = new EventEmitter<any>();
   @Input() public payment!: IPayments;
 
+  public readonly CY_SELECTORS = CY_SELECTORS;
   constructor() { }
 
   public ngOnInit(): void {

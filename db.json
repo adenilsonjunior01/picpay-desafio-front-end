@@ -1,56 +1,6 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "name": "Pennie Dumphries",
-      "username": "pdumphries0",
-      "title": "Dental Hygienist",
-      "value": 19.96,
-      "date": "2022-07-21T17:33:33Z",
-      "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 2,
-      "name": "Foster Orthmann",
-      "username": "forthmann1",
-      "title": "Professor",
-      "value": 207.36,
-      "date": "2021-01-28T14:01:29Z",
-      "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
-      "id": 3,
-      "name": "Crissie Summerill",
-      "username": "csummerill2",
-      "title": "VP Product Management",
-      "value": 464.54,
-      "date": "2020-02-09T18:20:32Z",
-      "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
-      "id": 4,
-      "name": "Letitia Crolly",
-      "username": "lcrolly3",
-      "title": "Web Developer I",
-      "value": 183.58,
-      "date": "2021-07-10T20:39:48Z",
-      "image": "https://robohash.org/estveniamet.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
-      "id": 5,
-      "name": "Anthea Pundy",
-      "username": "apundy4",
-      "title": "Software Engineer III",
-      "value": 177.19,
-      "date": "2021-01-01T14:09:51Z",
-      "image": "https://robohash.org/quiaautomnis.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 6,
       "name": "Hurleigh Malitrott",
       "username": "hmalitrott5",
