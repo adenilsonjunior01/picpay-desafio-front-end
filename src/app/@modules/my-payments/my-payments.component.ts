@@ -1,25 +1,22 @@
 import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { finalize, take } from 'rxjs';
+import { CY_SELECTORS, STRINGS } from 'src/app/@shared/enums';
 import { Utils } from 'src/app/@shared/utils/utils';
 
 import { TypeActionEnum } from './../../@enums/type-action.enum';
 import { IPayments } from './../../@models/interfaces/payments.interface';
 import { PaymentsService } from './../../@services/payments/payments.service';
-
-const TITLE_ADD = 'Adicionar pagamento';
-const TITLE_UPDATE = 'Editar pagamento';
-
 @Component({
   selector: 'app-my-payments',
   templateUrl: './my-payments.component.html',
   styleUrls: ['./my-payments.component.scss']
 })
 export class MyPaymentsComponent implements OnInit {
-  public form!: FormGroup;
+  public form!: UntypedFormGroup;
   public addPayment!: boolean;
   public titleDialog: string;
   public display: boolean;
@@ -32,12 +29,15 @@ export class MyPaymentsComponent implements OnInit {
   public totalRecords: number;
   public paginateParams: any;
 
+  public readonly CY_SELECTOR = CY_SELECTORS;
+  public readonly STRINGS = STRINGS;
+
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private paymentService: PaymentsService,
     private datePipe: DatePipe) {
 
-    this.titleDialog = TITLE_ADD;
+    this.titleDialog = STRINGS.TITLE_ADD_PAYMENTS;
     this.display = false;
     this.confirm = false;
     this.loading = false;
@@ -144,7 +144,7 @@ export class MyPaymentsComponent implements OnInit {
     });
     return result;
   }
- 
+
 
   public deletePayment(payment: IPayments): void {
     this.paymentService.deletePayment(payment).pipe(
@@ -176,9 +176,9 @@ export class MyPaymentsComponent implements OnInit {
 
   public handleTitleDialog(type?: TypeActionEnum): void {
     if (type === TypeActionEnum.ADD) {
-      this.titleDialog = TITLE_ADD;
+      this.titleDialog = STRINGS.TITLE_ADD_PAYMENTS;
     } else {
-      this.titleDialog = TITLE_UPDATE;
+      this.titleDialog = STRINGS.TITLE_UPDATE_PAYMENTS;
     }
   }
 

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { TypeActionEnum } from 'src/app/@enums';
+import { CY_SELECTORS } from 'src/app/@shared/enums';
 
 @Component({
   selector: 'app-form-payment',
@@ -9,11 +10,12 @@ import { TypeActionEnum } from 'src/app/@enums';
 })
 export class FormPaymentComponent implements OnInit {
   @Input() public action!: TypeActionEnum;
-  @Input() public form!: FormGroup;
+  @Input() public form!: UntypedFormGroup;
   @Output() public closeModal = new EventEmitter<any>();
   @Output() public submitForm = new EventEmitter<TypeActionEnum>();
-  
+
   public typeAction = TypeActionEnum;
+  public readonly CY_SELECTORS = CY_SELECTORS
 
   constructor() {
   }

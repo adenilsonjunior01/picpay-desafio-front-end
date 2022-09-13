@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { TypeActionEnum } from 'src/app/@enums';
 import { IPayments } from 'src/app/@models/interfaces/payments.interface';
+import { CY_SELECTORS } from 'src/app/@shared/enums';
 
 @Component({
   selector: 'app-table-payments',
@@ -11,7 +12,7 @@ import { IPayments } from 'src/app/@models/interfaces/payments.interface';
   styleUrls: ['./table-payments.component.scss']
 })
 export class TablePaymentsComponent implements OnInit, OnChanges {
-  @Input() public form!: FormGroup;
+  @Input() public form!: UntypedFormGroup;
   @Input() public payments!: IPayments[];
   @Input() public rows!: number;
   @Input() public totalRecords!: number;
@@ -19,9 +20,10 @@ export class TablePaymentsComponent implements OnInit, OnChanges {
   @Output() public confirmDelete = new EventEmitter<any>();
   @Output() public paramsPaginate = new EventEmitter<any>();
 
-  public querySearch = new FormControl(null);
+  public querySearch = new UntypedFormControl(null);
   public loading!: boolean;
   public copyPaymentsList!: IPayments[];
+  public readonly CY_SELECTOR = CY_SELECTORS;
 
     constructor(private datePipe: DatePipe) {
   }

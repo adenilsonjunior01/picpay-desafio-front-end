@@ -17,19 +17,19 @@
     <div class="grid justify-content-center mt-4">
       <div class="col-5">
         <p-button
-        type="button"
-        label="Cancelar"
-        (click)="emitCancelDelte.emit()"
-        styleClass="w-full btn-letter-spacing-1x uppercase p-button-secondary"
-       ></p-button>
+          [id]="CY_SELECTORS.SELECTOR_BTN_DIALOG_CANCEL"
+          type="button"
+          label="Cancelar"
+          (click)="emitCancelDelte.emit()"
+          styleClass="w-full btn-letter-spacing-1x uppercase p-button-secondary"></p-button>
       </div>
       <div class="col-5">
         <p-button
-        label="Confirmar"
-        type="submit"
-        (click)="emitConfirmDelete.emit(true)"
-        styleClass="w-full btn-letter-spacing-1x uppercase"
-        ></p-button>
+          [id]="CY_SELECTORS.SELECTOR_BTN_DIALOG_CONFIRM"
+          label="Confirmar"
+          type="submit"
+          (click)="emitConfirmDelete.emit(true)"
+          styleClass="w-full btn-letter-spacing-1x uppercase"></p-button>
       </div>
     </div>
   </div>

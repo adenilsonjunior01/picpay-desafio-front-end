@@ -8,7 +8,7 @@
           </div>
 
           <div class="col-12 auth-login--welcome pb-4">
-            <h2 class="m-0 font-semibold">Bem vindo de volta</h2>
+            <h2 class="m-0 font-semibold" data-cy="title-login">Bem vindo de volta</h2>
           </div>
 
           <div class="col-12 pb-4" *ngIf="validLogin">
@@ -22,7 +22,7 @@
           <div class="col-12">
             <span class="p-float-label">
               <input
-                id="email"
+                [id]="CY_SELECTOR.SELECTOR_EMAIL"
                 type="email"
                 pInputText
                 formControlName="email"
@@ -42,7 +42,7 @@
           <div class="col-12 pt-3">
             <div class="p-inputgroup">
               <input
-                id="senha"
+                [id]="CY_SELECTOR.SELECTOR_PASSWORD"
                 [type]="toogleTypeInputPassword ? 'text' : 'password'"
                 pInputText
                 placeholder="Senha"
@@ -65,6 +65,7 @@
           <div class="col-12 pt-4">
             <p-button
               label="Entrar"
+              [id]="CY_SELECTOR.SELECTOR_BTN_LOGIN"
               type="submit"
               styleClass="w-full btn-letter-spacing-1x uppercase"
               [disabled]="form.invalid"
